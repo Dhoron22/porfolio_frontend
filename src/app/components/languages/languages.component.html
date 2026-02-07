@@ -1,0 +1,54 @@
+<div class="languages-container">
+  <h1 class="page-title">Idiomas</h1>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    <p>Cargando idiomas...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadLanguages()">Reintentar</button>
+  </div>
+
+  <!-- Languages Grid -->
+  <div *ngIf="!loading && !error && languages.length > 0" class="languages-grid">
+    <div *ngFor="let lang of languages" class="language-card">
+
+      <!-- Flag & Name -->
+      <div class="lang-header">
+        <span class="flag">{{ lang.flag_emoji }}</span>
+        <h2 class="lang-name">{{ lang.name }}</h2>
+      </div>
+
+      <!-- Level Code Badge -->
+      <div class="level-badge" [style.background-color]="getProficiencyColor(lang.proficiency)">
+        {{ lang.level_code }}
+      </div>
+
+      <!-- Proficiency -->
+      <div class="proficiency-section">
+        <div class="proficiency-header">
+          <span class="proficiency-label">{{ lang.proficiency }}</span>
+        </div>
+
+        <div class="proficiency-bar">
+          <div
+            class="proficiency-fill"
+            [style.width]="getProficiencyWidth(lang.proficiency)"
+            [style.background-color]="getProficiencyColor(lang.proficiency)"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <p *ngIf="lang.description" class="description">{{ lang.description }}</p>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div *ngIf="!loading && !error && languages.length === 0" class="empty-state">
+    <p>No hay información de idiomas disponible.</p>
+  </div>
+</div>

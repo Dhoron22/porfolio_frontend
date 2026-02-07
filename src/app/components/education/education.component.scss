@@ -1,0 +1,251 @@
+.education-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 48px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 32px;
+  }
+}
+
+// Loading & Error states
+.loading,
+.error,
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+
+  p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+}
+
+.error {
+  color: #d32f2f;
+
+  button {
+    margin-top: 16px;
+    padding: 12px 24px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken(#1976d2, 10%);
+    }
+  }
+}
+
+// Timeline
+.timeline {
+  position: relative;
+  padding-left: 40px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #1976d2, #64b5f6);
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 30px;
+
+    &::before {
+      left: 10px;
+    }
+  }
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 48px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -33px;
+  top: 8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #1976d2;
+  border: 3px solid white;
+  box-shadow: 0 0 0 3px #e3f2fd;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    left: -28px;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.timeline-content {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 24px;
+  }
+}
+
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.edu-main {
+  flex: 1;
+
+  .degree {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1976d2;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+
+    @media (max-width: 768px) {
+      font-size: 1.3rem;
+    }
+  }
+
+  .institution {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 8px 0;
+
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+  }
+
+  .field {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+    font-style: italic;
+  }
+}
+
+.edu-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .period {
+    font-size: 0.95rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .status {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background-color: #e0e0e0;
+    color: #666;
+
+    &.current {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    &.completed {
+      background-color: #1976d2;
+      color: white;
+    }
+  }
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+  margin: 0 0 16px 0;
+  white-space: pre-line;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: #666;
+  margin: 12px 0 0 0;
+
+  .icon {
+    font-size: 1.1rem;
+  }
+}
+
+.certificate-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  color: #1976d2;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  .icon {
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    background-color: #1976d2;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(25, 118, 210, 0.3);
+  }
+}

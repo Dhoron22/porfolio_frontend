@@ -1,0 +1,278 @@
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+// Estados de carga y error
+.loading,
+.error,
+.no-info {
+  text-align: center;
+  padding: 60px 20px;
+
+  p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+}
+
+.error {
+  color: #d32f2f;
+
+  button {
+    margin-top: 16px;
+    padding: 12px 24px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken(#1976d2, 10%);
+    }
+  }
+}
+
+// Contenido principal
+.about-content {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+// Header con foto de perfil
+.about-header {
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+  color: white;
+  padding: 48px 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 24px;
+  }
+}
+
+.profile-image {
+  flex-shrink: 0;
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.9);
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.header-info {
+  flex: 1;
+
+  h1 {
+    margin: 0 0 8px 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  h2 {
+    margin: 0 0 16px 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    opacity: 0.95;
+
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+  }
+
+  .location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      justify-content: center;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// Sección de biografía
+.bio-section {
+  padding: 40px;
+  border-bottom: 1px solid #e0e0e0;
+
+  h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .bio-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+    white-space: pre-line;
+  }
+}
+
+// Sección de contacto
+.contact-section {
+  padding: 40px;
+  border-bottom: 1px solid #e0e0e0;
+
+  h3 {
+    margin: 0 0 24px 0;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 600;
+  }
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .contact-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  div {
+    flex: 1;
+  }
+
+  .contact-label {
+    margin: 0 0 4px 0;
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  a {
+    color: #1976d2;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #333;
+    font-weight: 500;
+  }
+}
+
+// Sección de redes sociales
+.social-section {
+  padding: 40px;
+
+  h3 {
+    margin: 0 0 24px 0;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 600;
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s;
+  color: white;
+
+  .icon {
+    font-size: 1.3rem;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &.github {
+    background-color: #333;
+
+    &:hover {
+      background-color: lighten(#333, 10%);
+    }
+  }
+
+  &.linkedin {
+    background-color: #0077b5;
+
+    &:hover {
+      background-color: darken(#0077b5, 8%);
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .bio-section,
+  .contact-section,
+  .social-section {
+    padding: 32px 24px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,65 @@
+<div class="education-container">
+  <h1 class="page-title">Formación Académica</h1>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    <p>Cargando formación académica...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadEducation()">Reintentar</button>
+  </div>
+
+  <!-- Education Timeline -->
+  <div *ngIf="!loading && !error && education.length > 0" class="timeline">
+    <div *ngFor="let edu of education" class="timeline-item">
+
+      <div class="timeline-marker"></div>
+
+      <div class="timeline-content">
+        <!-- Header -->
+        <div class="edu-header">
+          <div class="edu-main">
+            <h2 class="degree">{{ edu.degree }}</h2>
+            <h3 class="institution">{{ edu.institution }}</h3>
+            <p class="field" *ngIf="edu.field_of_study">{{ edu.field_of_study }}</p>
+          </div>
+
+          <div class="edu-meta">
+            <span class="period">{{ edu.period }}</span>
+            <span class="status" [class.current]="edu.current" [class.completed]="edu.status === 'completed'">
+              {{ edu.current ? 'Cursando' : edu.status === 'completed' ? 'Completado' : 'Pausado' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <p *ngIf="edu.description" class="description">{{ edu.description }}</p>
+
+        <!-- Location -->
+        <p *ngIf="edu.location" class="location">
+          <span class="icon">📍</span>
+          {{ edu.location }}
+        </p>
+
+        <!-- Certificate -->
+        <a
+          *ngIf="edu.certificate_url"
+          [href]="edu.certificate_url"
+          target="_blank"
+          class="certificate-link"
+        >
+          <span class="icon">🎓</span>
+          Ver certificado
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div *ngIf="!loading && !error && education.length === 0" class="empty-state">
+    <p>No hay información de formación académica disponible.</p>
+  </div>
+</div>

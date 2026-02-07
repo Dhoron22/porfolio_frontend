@@ -1,0 +1,102 @@
+<div class="about-container">
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    <p>Cargando información...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadPersonalInfo()">Reintentar</button>
+  </div>
+
+  <!-- Personal Info -->
+  <div *ngIf="!loading && !error && personalInfo" class="about-content">
+
+    <!-- Header con imagen de perfil -->
+    <div class="about-header">
+      <div class="profile-image">
+        <img
+          [src]="personalInfo.profile_image || 'assets/default-avatar.png'"
+          [alt]="personalInfo.nombre_completo"
+          onerror="this.src='assets/default-avatar.png'"
+        >
+      </div>
+      <div class="header-info">
+        <h1>{{ personalInfo.nombre_completo }}</h1>
+        <h2>{{ personalInfo.titulo }}</h2>
+        <p class="location">
+          <span class="icon">📍</span>
+          {{ personalInfo.location }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Biografía -->
+    <div class="bio-section">
+      <h3>Sobre mí</h3>
+      <p class="bio-text">{{ personalInfo.bio }}</p>
+    </div>
+
+    <!-- Información de contacto -->
+    <div class="contact-section">
+      <h3>Información de contacto</h3>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="contact-icon">📧</span>
+          <div>
+            <p class="contact-label">Email</p>
+            <a [href]="'mailto:' + personalInfo.email">{{ personalInfo.email }}</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-icon">📱</span>
+          <div>
+            <p class="contact-label">Teléfono</p>
+            <a [href]="'tel:' + personalInfo.phone">{{ personalInfo.phone }}</a>
+          </div>
+        </div>
+
+        <div class="contact-item" *ngIf="personalInfo.age">
+          <span class="contact-icon">🎂</span>
+          <div>
+            <p class="contact-label">Edad</p>
+            <p>{{ personalInfo.age }} años</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="social-section">
+      <h3>Encuéntrame en</h3>
+      <div class="social-links">
+        <a
+          *ngIf="personalInfo.github_url"
+          [href]="personalInfo.github_url"
+          target="_blank"
+          class="social-link github"
+        >
+          <span class="icon">💻</span>
+          GitHub
+        </a>
+
+        <a
+          *ngIf="personalInfo.linkedin_url"
+          [href]="personalInfo.linkedin_url"
+          target="_blank"
+          class="social-link linkedin"
+        >
+          <span class="icon">💼</span>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sin información -->
+  <div *ngIf="!loading && !error && !personalInfo" class="no-info">
+    <p>No hay información personal disponible.</p>
+  </div>
+</div>

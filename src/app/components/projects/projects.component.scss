@@ -1,0 +1,268 @@
+.projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+}
+
+// Estados de carga y error
+.loading,
+.error,
+.no-projects {
+  text-align: center;
+  padding: 40px;
+
+  p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+}
+
+.error {
+  color: #d32f2f;
+
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken(#1976d2, 10%);
+    }
+  }
+}
+
+// Grid de proyectos
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+// Tarjeta de proyecto
+.project-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  }
+}
+
+// Header del proyecto
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 12px;
+
+  h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.3;
+    flex: 1;
+  }
+}
+
+.project-status {
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: #e0e0e0;
+  color: #666;
+  text-transform: capitalize;
+  white-space: nowrap;
+
+  &.featured {
+    background-color: #ffd700;
+    color: #333;
+    font-weight: 600;
+  }
+}
+
+// Descripción
+.project-description {
+  color: #666;
+  margin: 12px 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+// Metadata
+.project-meta {
+  margin: 16px 0;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+
+  p {
+    margin: 6px 0;
+    font-size: 0.9rem;
+    color: #555;
+
+    strong {
+      color: #333;
+      font-weight: 600;
+    }
+  }
+}
+
+// Tecnologías
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.tech-tag {
+  background-color: #1976d2;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: darken(#1976d2, 10%);
+  }
+}
+
+// Links del proyecto
+.project-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+
+  a,
+  button {
+    flex: 1;
+    min-width: 100px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.btn-demo {
+  background-color: #4caf50;
+  color: white;
+
+  &:hover {
+    background-color: darken(#4caf50, 8%);
+  }
+}
+
+.btn-github {
+  background-color: #333;
+  color: white;
+
+  &:hover {
+    background-color: lighten(#333, 15%);
+  }
+}
+
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+
+  &:hover {
+    background-color: darken(#f44336, 8%);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .projects-container {
+    padding: 16px;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .project-card {
+    padding: 20px;
+  }
+
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .project-links {
+    flex-direction: column;
+
+    a,
+    button {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-container {
+    padding: 12px;
+  }
+
+  .project-card {
+    padding: 16px;
+  }
+
+  .technologies {
+    gap: 6px;
+  }
+
+  .tech-tag {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+}

@@ -1,0 +1,76 @@
+<div class="experience-container">
+  <h1 class="page-title">Experiencia Laboral</h1>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    <p>Cargando experiencia laboral...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadExperiences()">Reintentar</button>
+  </div>
+
+  <!-- Experience Timeline -->
+  <div *ngIf="!loading && !error && experiences.length > 0" class="timeline">
+    <div *ngFor="let exp of experiences" class="timeline-item">
+
+      <div class="timeline-marker" [class.current]="exp.current"></div>
+
+      <div class="timeline-content">
+        <!-- Header -->
+        <div class="exp-header">
+          <div class="exp-main">
+            <h2 class="position">{{ exp.position }}</h2>
+            <h3 class="company">{{ exp.company }}</h3>
+          </div>
+
+          <div class="exp-meta">
+            <span class="period">{{ exp.period }}</span>
+            <span class="duration" *ngIf="exp.duration_in_months">
+              {{ exp.duration_in_months }}
+              {{ exp.duration_in_months === 1 ? 'mes' : 'meses' }}
+            </span>
+            <span *ngIf="exp.current" class="badge-current">Actual</span>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <p *ngIf="exp.location" class="location">
+          <span class="icon">📍</span>
+          {{ exp.location }}
+        </p>
+
+        <!-- Description -->
+        <p *ngIf="exp.description" class="description">{{ exp.description }}</p>
+
+        <!-- Responsibilities -->
+        <div *ngIf="exp.responsabilities && exp.responsabilities.length > 0" class="responsibilities">
+          <h4>Responsabilidades:</h4>
+          <ul>
+            <li *ngFor="let resp of exp.responsabilities">{{ resp }}</li>
+          </ul>
+        </div>
+
+        <!-- Reference -->
+        <div *ngIf="exp.reference_name || exp.reference_phone" class="reference">
+          <h4>Referencia:</h4>
+          <p *ngIf="exp.reference_name">
+            <span class="icon">👤</span>
+            {{ exp.reference_name }}
+          </p>
+          <p *ngIf="exp.reference_phone">
+            <span class="icon">📞</span>
+            <a [href]="'tel:' + exp.reference_phone">{{ exp.reference_phone }}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div *ngIf="!loading && !error && experiences.length === 0" class="empty-state">
+    <p>No hay información de experiencia laboral disponible.</p>
+  </div>
+</div>

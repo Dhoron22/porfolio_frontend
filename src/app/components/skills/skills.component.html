@@ -1,0 +1,116 @@
+<div class="skills-container">
+  <h1 class="page-title">Habilidades</h1>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    <p>Cargando habilidades...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadSkills()">Reintentar</button>
+  </div>
+
+  <!-- Filters -->
+  <div *ngIf="!loading && !error && skills.length > 0" class="filters">
+    <div class="filter-group">
+      <label>Categoría:</label>
+      <select [(ngModel)]="selectedCategory" (change)="selectedSubcategory = 'all'">
+        <option value="all">Todas</option>
+        <option value="technical">Técnicas</option>
+        <option value="soft">Blandas</option>
+        <option value="tool">Herramientas</option>
+      </select>
+    </div>
+
+    <div class="filter-group" *ngIf="subcategories.length > 0">
+      <label>Subcategoría:</label>
+      <select [(ngModel)]="selectedSubcategory">
+        <option value="all">Todas</option>
+        <option *ngFor="let sub of subcategories" [value]="sub">{{ sub }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Skills Content -->
+  <div *ngIf="!loading && !error && filteredSkills.length > 0" class="skills-content">
+
+    <!-- Technical Skills -->
+    <div *ngIf="technicalSkills.length > 0" class="skills-section">
+      <h2 class="section-title">
+        <span class="icon">💻</span>
+        Habilidades Técnicas
+      </h2>
+      <div class="skills-grid">
+        <div *ngFor="let skill of technicalSkills" class="skill-card">
+          <div class="skill-header">
+            <span *ngIf="skill.icon" class="skill-icon">{{ skill.icon }}</span>
+            <h3 class="skill-name">{{ skill.name }}</h3>
+          </div>
+
+          <p *ngIf="skill.subcategory" class="skill-subcategory">{{ skill.subcategory }}</p>
+
+          <div class="proficiency-section">
+            <div class="proficiency-header">
+              <span class="proficiency-label">{{ skill.proficiency_label }}</span>
+              <span class="proficiency-value">{{ skill.proficiency }}%</span>
+            </div>
+            <div class="proficiency-bar">
+              <div
+                class="proficiency-fill"
+                [style.width.%]="skill.proficiency"
+                [style.background-color]="getProficiencyColor(skill.proficiency)"
+              ></div>
+            </div>
+          </div>
+
+          <p *ngIf="skill.description" class="skill-description">{{ skill.description }}</p>
+
+          <span *ngIf="skill.featured" class="badge-featured">⭐ Destacada</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div *ngIf="softSkills.length > 0" class="skills-section">
+      <h2 class="section-title">
+        <span class="icon">🤝</span>
+        Habilidades Blandas
+      </h2>
+      <div class="soft-skills-grid">
+        <div *ngFor="let skill of softSkills" class="soft-skill-card">
+          <span *ngIf="skill.icon" class="soft-icon">{{ skill.icon }}</span>
+          <h3 class="soft-name">{{ skill.name }}</h3>
+          <p *ngIf="skill.description" class="soft-description">{{ skill.description }}</p>
+          <span *ngIf="skill.featured" class="badge-featured-small">⭐</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div *ngIf="toolSkills.length > 0" class="skills-section">
+      <h2 class="section-title">
+        <span class="icon">🛠️</span>
+        Herramientas
+      </h2>
+      <div class="tools-grid">
+        <div *ngFor="let skill of toolSkills" class="tool-card">
+          <span *ngIf="skill.icon" class="tool-icon">{{ skill.icon }}</span>
+          <h3 class="tool-name">{{ skill.name }}</h3>
+          <p *ngIf="skill.subcategory" class="tool-subcategory">{{ skill.subcategory }}</p>
+          <span *ngIf="skill.featured" class="badge-featured-small">⭐</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Empty state -->
+  <div *ngIf="!loading && !error && filteredSkills.length === 0" class="empty-state">
+    <p>No se encontraron habilidades con los filtros seleccionados.</p>
+    <button (click)="selectedCategory = 'all'; selectedSubcategory = 'all'">
+      Limpiar filtros
+    </button>
+  </div>
+</div>

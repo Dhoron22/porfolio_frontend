@@ -1,0 +1,212 @@
+.languages-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 48px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 32px;
+  }
+}
+
+// Loading & Error states
+.loading,
+.error,
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+
+  p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+}
+
+.error {
+  color: #d32f2f;
+
+  button {
+    margin-top: 16px;
+    padding: 12px 24px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken(#1976d2, 10%);
+    }
+  }
+}
+
+// Languages Grid
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.language-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1976d2, #64b5f6);
+  }
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 24px;
+  }
+}
+
+.lang-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  .flag {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .lang-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.level-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.proficiency-section {
+  margin-bottom: 20px;
+}
+
+.proficiency-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+
+  .proficiency-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #555;
+  }
+}
+
+.proficiency-bar {
+  width: 100%;
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.proficiency-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 1s ease-out;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+  font-style: italic;
+}
+
+// Proficiency specific colors (ya manejados en el TS, pero como fallback)
+.proficiency-bar {
+  &[data-level="Nativo"] .proficiency-fill {
+    background-color: #2e7d32;
+  }
+
+  &[data-level="Avanzado"] .proficiency-fill {
+    background-color: #1976d2;
+  }
+
+  &[data-level="Intermedio"] .proficiency-fill {
+    background-color: #f57c00;
+  }
+
+  &[data-level="Basico"] .proficiency-fill {
+    background-color: #c62828;
+  }
+}
