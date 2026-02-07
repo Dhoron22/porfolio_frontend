@@ -1,1 +1,110 @@
-<p>home works!</p>
+<div class="home-container">
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title" *ngIf="personalInfo">
+          Hola, soy <span class="highlight">{{ personalInfo.nombre_completo }}</span>
+        </h1>
+        <h2 class="hero-subtitle" *ngIf="personalInfo">{{ personalInfo.titulo }}</h2>
+        <p class="hero-description" *ngIf="personalInfo">{{ personalInfo.bio }}</p>
+        
+        <div class="hero-buttons">
+          <a routerLink="/projects" class="btn btn-primary">Ver Proyectos</a>
+          <a routerLink="/about" class="btn btn-secondary">Sobre Mí</a>
+        </div>
+
+        <div class="hero-social" *ngIf="personalInfo">
+          <a *ngIf="personalInfo.github_url" [href]="personalInfo.github_url" target="_blank" class="social-link">
+            <span class="icon">💻</span> GitHub
+          </a>
+          <a *ngIf="personalInfo.linkedin_url" [href]="personalInfo.linkedin_url" target="_blank" class="social-link">
+            <span class="icon">💼</span> LinkedIn
+          </a>
+          <a *ngIf="personalInfo.email" [href]="'mailto:' + personalInfo.email" class="social-link">
+            <span class="icon">📧</span> Email
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-image" *ngIf="personalInfo">
+        <img 
+          *ngIf="personalInfo.profile_image"
+          [src]="getProfileImageUrl()" 
+          [alt]="personalInfo.nombre_completo"
+        >
+        <div *ngIf="!personalInfo.profile_image" class="hero-avatar">
+          {{ personalInfo.initials }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section class="section projects-section" id="projects">
+    <div class="section-header">
+      <h2 class="section-title">Proyectos Destacados</h2>
+      <a routerLink="/projects" class="view-all">Ver todos →</a>
+    </div>
+
+    <div *ngIf="loading" class="loading">
+      <p>Cargando proyectos...</p>
+    </div>
+
+    <div *ngIf="!loading && featuredProjects.length > 0" class="projects-grid">
+      <div *ngFor="let project of featuredProjects" class="project-card">
+        <div class="project-image" *ngIf="project.image">
+          <img [src]="project.image" [alt]="project.title">
+        </div>
+        
+        <div class="project-content">
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-description">{{ project.description }}</p>
+          
+          <div class="project-tech">
+            <span *ngFor="let tech of project.technologies" class="tech-tag">{{ tech }}</span>
+          </div>
+
+          <div class="project-links">
+            <a *ngIf="project.url_demo" [href]="project.url_demo" target="_blank" class="project-link">
+              🌐 Demo
+            </a>
+            <a *ngIf="project.url_github" [href]="project.url_github" target="_blank" class="project-link">
+              💻 Código
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Skills Section -->
+  <section class="section skills-section" id="skills">
+    <div class="section-header">
+      <h2 class="section-title">Habilidades Principales</h2>
+      <a routerLink="/skills" class="view-all">Ver todas →</a>
+    </div>
+
+    <div *ngIf="featuredSkills.length > 0" class="skills-grid">
+      <div *ngFor="let skill of featuredSkills" class="skill-card">
+        <span *ngIf="skill.icon" class="skill-icon">{{ skill.icon }}</span>
+        <h3 class="skill-name">{{ skill.name }}</h3>
+        <div class="skill-bar">
+          <div class="skill-fill" [style.width.%]="skill.proficiency"></div>
+        </div>
+        <span class="skill-level">{{ skill.proficiency_label }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="cta-content">
+      <h2 class="cta-title">¿Trabajemos juntos?</h2>
+      <p class="cta-text">Estoy disponible para nuevos proyectos y oportunidades.</p>
+      <a routerLink="/about" class="btn btn-primary btn-large">Contáctame</a>
+    </div>
+  </section>
+
+</div>
