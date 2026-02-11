@@ -240,12 +240,9 @@
 
   .project-links {
     flex-direction: column;
-
-    a,
-    button {
-      width: 100%;
-    }
   }
+
+
 }
 
 @media (max-width: 480px) {
@@ -265,4 +262,5 @@
     font-size: 0.75rem;
     padding: 4px 10px;
   }
+
 }
